@@ -1,0 +1,29 @@
+{
+  "name": "cicizamri.github.io",
+  "version": "1.0.0",
+  "description": "personal site",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo",
+    "buildtest": "webpack src/index.js dist/main.js -d",
+    "buildrelease": "webpack src/index.js dist/main.js -p"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ciciZamri/ciciZamri.github.io.git"
+  },
+  "keywords": [
+    "personal",
+    "site"
+  ],
+  "author": "hammizie zamri",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ciciZamri/ciciZamri.github.io/issues"
+  },
+  "homepage": "https://github.com/ciciZamri/ciciZamri.github.io#readme",
+  "devDependencies": {
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.9"
+  }
+}
