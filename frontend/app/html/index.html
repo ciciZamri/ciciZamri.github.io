@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Path Finder</title>
+    <style>
+        :root{
+            --select-loc-height: 140px;
+            --label-width: calc(18vw + 4px);
+        }
+
+        body {
+            margin: 0;
+        }
+
+        #scene-container {
+            width: 100%;
+            /* height: calc(100vh - 140px); */
+            height: 100vh;
+            position: absolute;
+        }
+
+        .controller #previous-button {
+            position: absolute;
+            left: 18px;
+            bottom: 18px;
+            background-color: transparent;
+            border: none;
+            z-index: 1;
+        }
+
+        .controller #next-button {
+            position: absolute;
+            right: 18px;
+            bottom: 18px;
+            background-color: transparent;
+            border: none;
+            transform: scaleX(-1);
+            z-index: 1;
+        }
+
+        .controller #restart-button {
+            position: absolute;
+            right: 8px;
+            top: 160px;
+            z-index: 1;
+        }
+
+        .select-loc {
+            margin: auto;
+            width: 100vw;
+            padding: 10px;
+            max-height: var(--select-loc-height);
+            box-sizing: border-box;
+            background-color: transparent;
+            position: absolute;
+            z-index: 1;
+        }
+
+        .label {
+            display: inline-block;
+            width: var(--label-width);
+            margin: 4px;
+            box-sizing: border-box;
+            color: aliceblue;
+        }
+
+        input {
+            height: 36px;
+            width: 70vw;
+            border: 2px solid white;
+            border-radius: 6px;
+            box-sizing: border-box;
+            margin: 4px;
+            font-size: large;
+            text-indent: 6px;
+        }
+
+        #suggestion{
+            background-color: white;
+            color: black;
+            width: 70vw;
+            height: 20vh;
+            overflow: scroll;
+            border-radius: 6px;
+            position: absolute;
+            z-index: 1;
+            display: none;
+        }
+
+        #find-btn {
+            margin: 8px;
+            width: 64px;
+            height: 28px;
+            background-color: white;
+            color: black;
+            border: none;
+            border-radius: 6px;
+            float: right;
+            margin-right: 8vw;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main-content">
+        <header>
+            <div class="select-loc">
+                <div class="get-input">
+                    <h3 class="label">From :</h3>
+                    <input type="text" id="from-location">
+
+                </div>
+                <div class="get-input">
+                    <h3 class="label">To:</h3>
+                    <input type="text" id="to-location">
+                </div>
+                
+
+                <button id="find-btn">Find</button>
+            </div>
+        </header>
+        <div id="suggestion">
+                
+            </div>
+        <div class="controller">
+            <button id="restart-button">restart</button>
+            <button id="previous-button">
+                <svg width="60" height="60" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="30" cy="30" r="30" stroke="" fill="white" />
+                    <polygon points="9 30, 40 12, 40 48" stroke="black" fill="black" />
+                </svg>
+            </button>
+            <button id="next-button">
+                <svg width="60" height="60" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="30" cy="30" r="30" stroke="" fill="white" />
+                    <polygon points="9 30, 40 12, 40 48" stroke="black" fill="black" />
+                </svg>
+            </button>
+        </div>
+        <div id="scene-container"></div>
+    </div>
+    <script src="../../external/three.min.js"></script>
+    <script src="../../external/orbitalcontrol.js"></script>
+    <script src="../../external/gltfloader.js"></script>
+    <!-- <script src="../js/map_details.js"></script> -->
+
+    <script src="../js/graph.js"></script>
+    <script src="../js/view.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../js/domevent.js"></script>
+    <script src="../js/suggestion.js"></script>
+</body>
+
+</html>
