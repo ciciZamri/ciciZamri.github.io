@@ -3,10 +3,6 @@ let isLoaded = false;
 
 let obj1 = new GameObject(`${url}/assets/maincharacter.png`);
 
-while (!isLoaded) {
-    console.log(isLoaded);
-}
-
 obj1.obj.scale.set(0.2, 0.2);
 gameLoop();
 
