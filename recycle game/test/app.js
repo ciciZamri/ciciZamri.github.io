@@ -1,6 +1,5 @@
 let character1;
 let character2;
-const url = "http://localhost:8000";
 
 loader
     .add([
