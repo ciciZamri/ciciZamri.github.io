@@ -8,7 +8,7 @@ let app = new PIXI.Application({
 document.body.appendChild(app.view);
 
 let url;
-let env = 'notlocal';
+let env = 'local';
 
 if (env === 'local') url = "http://localhost:8000";
 else url = "https://raw.githubusercontent.com/ciciZamri/cicizamri.github.io/master/recycle%20game";
@@ -30,8 +30,8 @@ let assetList = [
 ];
 
 PIXI.loader.add(assetList).on("progress", (loader, resource) => {
-    console.log("loading: " + resource.url);
-    console.log("progress: " + loader.progress + "%");
+    // console.log("loading: " + resource.url);
+    // console.log("progress: " + loader.progress + "%");
 }).load(setup);
 
 let character;
@@ -53,11 +53,6 @@ const river = new PIXI.Container();
 const field = new PIXI.Container();
 const shop = new PIXI.Container();
 
-let gamestate = {
-    score: 0,
-    currentPage : 'homepage'
-};
-
 function setup() {
     character = new PIXI.Sprite(PIXI.loader.resources[`${url}/assets/maincharacter.png`].texture);
     homepagebg = new PIXI.Sprite(PIXI.loader.resources[`${url}/assets/homepagebg.png`].texture);
@@ -73,7 +68,9 @@ function setup() {
     c3l1 = new PIXI.Sprite(PIXI.loader.resources[`${url}/assets/c3l1.png`].texture);
     homebtn = new PIXI.Sprite(PIXI.loader.resources[`${url}/assets/homebtn.png`].texture);
 
-    console.log(app.screen.width, app.screen.height);
+    Player.player = character;
+
+    //console.log(app.screen.width, app.screen.height);
     homepagebg.scale.set(app.screen.width / homepagebg.width, app.screen.width / homepagebg.width);
     character.scale.set(0.07, 0.07);
     house.scale.set(0.3, 0.3);
@@ -96,7 +93,9 @@ function setup() {
     c2l1.anchor.set(0.5, 0.5);
     c3l1.scale.set(0.15, 0.15);
     c3l1.anchor.set(0.5, 0.5);
-    character.position.set(app.screen.width/2, 200);
+    character.position.set(app.screen.width / 2, 200);
+    Player.newposition[0] = character.x;
+    Player.newposition[1] = character.y;
 
     homepage.addChild(homepagebg);
     homepage.addChild(house);
@@ -123,61 +122,13 @@ function setup() {
         } else if (gamestate.currentPage === 'shop') {
             app.stage.removeChild(shop);
         }
-        gotohomepage();
+        Scene.gotohomepage();
     });
 
-    gotohomepage();
+    Scene.gotohomepage();
     app.stage.addChild(character);
-}
-
-function gotoriver() {
-    gamestate.currentPage = 'river';
-    app.stage.removeChild(homepage);
-    app.stage.addChild(river);
-    app.stage.addChild(homebtn);
-    app.stage.addChild(character);
-}
-
-function gotofield() {
-    gamestate.currentPage = 'field';
-    app.stage.removeChild(homepage);
-    app.stage.addChild(field);
-    app.stage.addChild(homebtn);
-    app.stage.addChild(character);
-}
-
-function gotohomepage() {
-    gamestate.currentPage = 'homepage';
-    app.stage.addChild(homepage);
-    app.stage.addChild(character);
-
-    house.position.set(app.screen.width / 2, 100);
-
-    riverbtn.position.set(app.screen.width - 100, 100);
-    riverbtn.interactive = true;
-    riverbtn.buttonMode = true;
-    riverbtn.on('pointerdown', gotoriver);
-
-    fieldbtn.position.set(app.screen.width - 100, 300);
-    fieldbtn.interactive = true;
-    fieldbtn.buttonMode = true;
-    fieldbtn.on('pointerdown', gotofield);
-
-    shopbtn.position.set(100, 300);
-    shopbtn.interactive = true;
-    shopbtn.buttonMode = true;
-    shopbtn.on('pointerdown', gotoshop);
-
-    c1l1.position.set(app.screen.width / 2 - 150, 200);
-
-    c2l1.position.set(app.screen.width / 2 - 150, 300);
-
-    c3l1.position.set(app.screen.width / 2 - 150, 400);
-}
-
-function gotoshop() {
-    gamestate.currentPage = 'shop';
-    app.stage.removeChild(homepage);
-    app.stage.addChild(shop);
-    app.stage.addChild(homebtn);
+    riverbtn.on('pointerdown', Scene.gotoriver);
+    fieldbtn.on('pointerdown', Scene.gotofield);
+    shopbtn.on('pointerdown', Scene.gotoshop);
+    gameloop();
 }
