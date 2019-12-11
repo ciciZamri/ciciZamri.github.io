@@ -1,3 +1,5 @@
+const fps = document.querySelector("#fps");
+
 let gamestate = {
     score: 0,
     currentPage: 'homepage'
@@ -7,6 +9,7 @@ let previous = 0;
 function gameloop(time) {
     const delta = time - previous;
     previous = time;
+    fps.innerHTML = `${((1/delta)*1000).toFixed(3)}`;
     updatePlayer();
     requestAnimationFrame(gameloop);
 }
