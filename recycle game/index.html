@@ -19,13 +19,40 @@
             color: white;
             padding: 4px;
         }
+
+        .coin{
+            position: absolute;
+            top: 15px;
+            left: 150px;
+            background-color: black;
+            padding: 4px;
+        }
+
+        .coin p, .score p{
+            display: inline;
+            color: white;
+        }
+
+        .score{
+            position: absolute;
+            top: 15px;
+            left: 270px;
+            background-color: black;
+            padding: 4px;
+        }
     </style>
 </head>
 <body>
     <div class="fps">
         <p id="fps">60</p><p>fps</p>
     </div>
-    <script src="js/player.js"></script>
+    <div class="coin">
+        <p>Coins: $</p><p id="coin">0</p>
+    </div>
+    <div class="score">
+        <p>Score: </p><p id="score">0</p>
+    </div>
+    <script src="js/gameobject.js"></script>
     <script src="js/game.js"></script>
     <script src="js/app.js"></script>
     <script src="js/init.js"></script>

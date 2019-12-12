@@ -38,7 +38,7 @@ PIXI.loader.add(assetList).on("progress", (loader, resource) => {
     // console.log("progress: " + loader.progress + "%");
 }).load(setup);
 
-let character;
+let player;
 let homepagebg;
 let house;
 let riverbtn;
@@ -51,15 +51,6 @@ let c1l1;
 let c2l1;
 let c3l1;
 let homebtn;
-let inventoryContainer;
-
-let bottleSprite;
-let canSprite;
-let paperSprite;
-
-let bottle = [];
-let can = [];
-let paper = [];
 
 const homepage = new PIXI.Container();
 const river = new PIXI.Container();
@@ -67,7 +58,7 @@ const field = new PIXI.Container();
 const shop = new PIXI.Container();
 
 function setup() {
-    character = new PIXI.Sprite(PIXI.loader.resources[`${url}/assets/maincharacter.png`].texture);
+    const playerSprite = new PIXI.Sprite(PIXI.loader.resources[`${url}/assets/maincharacter.png`].texture);
     homepagebg = new PIXI.Sprite(PIXI.loader.resources[`${url}/assets/homepagebg.png`].texture);
     house = new PIXI.Sprite(PIXI.loader.resources[`${url}/assets/house.png`].texture);
     riverbtn = new PIXI.Sprite(PIXI.loader.resources[`${url}/assets/riverbtn.png`].texture);
@@ -80,22 +71,14 @@ function setup() {
     c2l1 = new PIXI.Sprite(PIXI.loader.resources[`${url}/assets/c2l1.png`].texture);
     c3l1 = new PIXI.Sprite(PIXI.loader.resources[`${url}/assets/c3l1.png`].texture);
     homebtn = new PIXI.Sprite(PIXI.loader.resources[`${url}/assets/homebtn.png`].texture);
-    bottleSprite = new PIXI.Sprite(PIXI.loader.resources[`${url}/assets/bottle.png`].texture);
-    //canSprite = new PIXI.Sprite(PIXI.loader.resources[`${url}/assets/can.png`].texture);
-    paperSprite = new PIXI.Sprite(PIXI.loader.resources[`${url}/assets/paper.png`].texture);
-    inventoryContainer = new PIXI.Sprite(PIXI.loader.resources[`${url}/assets/inventorycontainer.png`].texture);
+    //inventoryContainer = new PIXI.Sprite(PIXI.loader.resources[`${url}/assets/inventorycontainer.png`].texture);
 
-    for(let i = 0 ; i<10 ; i++){
-        const c = new PIXI.Sprite(PIXI.loader.resources[`${url}/assets/can.png`].texture);
-        can.push(c);
-    }
-
-    Player.player = character;
+    player = new GameObject(playerSprite);
 
     //console.log(app.screen.width, app.screen.height);
     homepagebg.scale.set(app.screen.width / homepagebg.width, app.screen.width / homepagebg.width);
-    character.scale.set(0.07, 0.07);
-    character.anchor.set(0.5, 0.5);
+    playerSprite.scale.set(0.07, 0.07);
+    playerSprite.anchor.set(0.5, 0.5);
     house.scale.set(0.3, 0.3);
     house.anchor.set(0.5, 0.5);
     riverbtn.scale.set(0.3, 0.3);
@@ -116,9 +99,9 @@ function setup() {
     c2l1.anchor.set(0.5, 0.5);
     c3l1.scale.set(0.15, 0.15);
     c3l1.anchor.set(0.5, 0.5);
-    character.position.set(app.screen.width / 2, 200);
-    Player.newposition[0] = character.x;
-    Player.newposition[1] = character.y;
+    player.gameobj.position.set(app.screen.width / 2, 200);
+    // Player.newposition[0] = player.gameobj.x;
+    // Player.newposition[1] = player.gameobj.y;
 
     homepage.addChild(homepagebg);
     homepage.addChild(house);
@@ -138,18 +121,12 @@ function setup() {
     homebtn.interactive = true;
     homebtn.buttonMode = true;
     homebtn.on('pointerdown', () => {
-        // if (gamestate.currentPage === 'river') {
-        //     app.stage.removeChild(river);
-        // } else if (gamestate.currentPage === 'field') {
-        //     app.stage.removeChild(field);
-        // } else if (gamestate.currentPage === 'shop') {
-        //     app.stage.removeChild(shop);
-        // }
         Scene.gotohomepage();
     });
 
     Scene.loadhomepage();
-    app.stage.addChild(character);
+    app.stage.addChild(player.gameobj);
+
     riverbtn.on('pointerdown', Scene.gotoriver);
     fieldbtn.on('pointerdown', Scene.gotofield);
     shopbtn.on('pointerdown', Scene.gotoshop);
