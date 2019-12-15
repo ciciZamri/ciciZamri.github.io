@@ -8,7 +8,7 @@ let app = new PIXI.Application({
 document.body.appendChild(app.view);
 
 let url;
-let env = 'local';
+let env = 'notlocal';
 
 if (env === 'local') url = "http://localhost:8000";
 else url = "https://raw.githubusercontent.com/ciciZamri/cicizamri.github.io/master/recycle%20game";
