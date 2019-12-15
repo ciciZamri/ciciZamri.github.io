@@ -142,9 +142,9 @@ class Item extends GameObject {
                 app.stage.removeChild(this.gameobj);
                 gamestate.score += 30;
                 switch (this.type) {
-                    case "paper": gamestate.paperCount += 1; break;
-                    case "bottle": gamestate.bottleCount += 1; break;
-                    case "can": gamestate.canCount += 1; break;
+                    case "paper": gamestate.paperCount = (gamestate.paperCount<gamestate.containerCapacity ? gamestate.paperCount+1 : gamestate.paperCount); break;
+                    case "bottle": gamestate.bottleCount = (gamestate.bottleCount<gamestate.containerCapacity ? gamestate.bottleCount+1 : gamestate.bottleCount); break;
+                    case "can": gamestate.canCount = (gamestate.canCount<gamestate.containerCapacity ? gamestate.canCount+1 : gamestate.canCount); break;
                 }
                 updateUI();
             });

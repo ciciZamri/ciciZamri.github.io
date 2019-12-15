@@ -128,6 +128,14 @@ function setup() {
 
     Scene.loadhomepage();
 
+    c1l1.interactive = true;
+    c1l1.buttonMode = true;
+    c1l1.on('pointerdown', ()=>{
+        gamestate.coin += 50;
+        gamestate.paperCount -= 1;
+        updateUI();
+    });
+
     for(let i = 1 ; i<=3 ; i++){
         let s;
         let con = new PIXI.Sprite(PIXI.loader.resources[`${url}/assets/inventorycontainer.png`].texture);
