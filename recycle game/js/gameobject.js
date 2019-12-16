@@ -1,6 +1,6 @@
 class GameObject{
     gameobj;
-    speed = 2;
+    speed = 5;
     shouldMove = false;
     newposition = [0, 0];
     aftermoved;

@@ -31,7 +31,8 @@ let assetList = [
     `${url}/asset2/bottle.png`,
     `${url}/asset2/can.png`,
     `${url}/asset2/paper.png`,
-    `${url}/assets/inventorycontainer.png`
+    `${url}/assets/inventorycontainer.png`,
+    `${url}/asset2/coin.png`
 ];
 
 PIXI.loader.add(assetList).on("progress", (loader, resource) => {
@@ -53,6 +54,8 @@ let c2l1;
 let c3l1;
 let homebtn;
 
+let coins = [];
+
 const homepage = new PIXI.Container();
 const river = new PIXI.Container();
 const field = new PIXI.Container();
@@ -64,7 +67,7 @@ function setup() {
     homepagebg = new PIXI.Sprite(PIXI.loader.resources[`${url}/asset2/homepagebg.png`].texture);
     house = new PIXI.Sprite(PIXI.loader.resources[`${url}/asset2/house.png`].texture);
     riverbtn = new PIXI.Sprite(PIXI.loader.resources[`${url}/asset2/riverbtn.png`].texture);
-    bus = new PIXI.Sprite(PIXI.loader.resources[`${url}/asset2/bus.png`].texture);
+    // bus = new PIXI.Sprite(PIXI.loader.resources[`${url}/asset2/bus.png`].texture);
     shopbtn = new PIXI.Sprite(PIXI.loader.resources[`${url}/asset2/shopbtn.png`].texture);
     riverbg = new PIXI.Sprite(PIXI.loader.resources[`${url}/asset2/riverbg.jpg`].texture);
     fieldbg = new PIXI.Sprite(PIXI.loader.resources[`${url}/asset2/fieldbg.png`].texture);
@@ -73,7 +76,15 @@ function setup() {
     c2l1 = new PIXI.Sprite(PIXI.loader.resources[`${url}/asset2/c2l1.png`].texture);
     c3l1 = new PIXI.Sprite(PIXI.loader.resources[`${url}/asset2/c3l1.png`].texture);
     homebtn = new PIXI.Sprite(PIXI.loader.resources[`${url}/asset2/homebtn.png`].texture);
-    //inventoryContainer = new PIXI.Sprite(PIXI.loader.resources[`${url}/assets/inventorycontainer.png`].texture);
+    //inventoryContainer = new PIXI.Sprite(PIXI.loader.resources[`${url}/assets/inventorycontainer.png`].texture)
+
+    const b = new PIXI.Sprite(PIXI.loader.resources[`${url}/asset2/bus.png`].texture);
+    b.scale.set(0.3, 0.3);
+    b.anchor.set(0.5, 0.5);
+    b.position.set(app.screen.width - 310, 180);
+    b.interactive = true;
+    b.buttonMode = true;
+    bus = new Item(b, "bus");
 
     player = new GameObject(playerSprite);
 
@@ -85,8 +96,6 @@ function setup() {
     house.anchor.set(0.5, 0.5);
     riverbtn.scale.set(0.9, 0.9);
     riverbtn.anchor.set(0.5, 0.5);
-    bus.scale.set(0.3, 0.3);
-    bus.anchor.set(0.5, 0.5);
     shopbtn.scale.set(0.3, 0.3);
     shopbtn.anchor.set(0.5, 0.5);
     homebtn.scale.set(0.2, 0.2);
@@ -108,7 +117,7 @@ function setup() {
     homepage.addChild(homepagebg);
     homepage.addChild(house);
     homepage.addChild(riverbtn);
-    homepage.addChild(bus);
+    homepage.addChild(bus.gameobj);
     homepage.addChild(shopbtn);
     homepage.addChild(c1l1);
     homepage.addChild(c2l1);
@@ -128,36 +137,89 @@ function setup() {
 
     Scene.loadhomepage();
 
+    for (let i = 0; i < 5; i++) {
+        const co = new PIXI.Sprite(PIXI.loader.resources[`${url}/asset2/coin.png`].texture);
+        co.anchor.set(0.5, 0.5);
+        co.scale.set(0.04, 0.04);
+        co.position.set(c1l1.x, c1l1.y);
+        coins.push(new Item(co, "coin"));
+        coins[i].speed = i + 2;
+        //app.stage.addChild(coins[i].gameobj);
+    }
+
     c1l1.interactive = true;
     c1l1.buttonMode = true;
-    c1l1.on('pointerdown', ()=>{
-        gamestate.coin += 50;
-        gamestate.paperCount -= 1;
-        updateUI();
+    c1l1.on('pointerdown', () => {
+        if (gamestate.paperCount > 0) {
+            for (let c of coins) {
+                c.gameobj.position.set(c1l1.x, c1l1.y);
+                app.stage.addChild(c.gameobj);
+                c.moveto(c1l1.x + generateRandom(-30, 30), (c1l1.y - 100), () => {
+                    app.stage.removeChild(c.gameobj);
+                });
+            }
+            gamestate.coin += 50;
+            gamestate.paperCount -= 1;
+            updateUI();
+        }
     });
 
-    for(let i = 1 ; i<=3 ; i++){
+    c2l1.interactive = true;
+    c2l1.buttonMode = true;
+    c2l1.on('pointerdown', () => {
+        if (gamestate.canCount > 0) {
+            for (let c of coins) {
+                c.gameobj.position.set(c2l1.x, c2l1.y);
+                app.stage.addChild(c.gameobj);
+                c.moveto(c2l1.x + generateRandom(-30, 30), (c2l1.y - 100), () => {
+                    app.stage.removeChild(c.gameobj);
+                });
+            }
+            gamestate.coin += 100;
+            gamestate.canCount -= 1;
+            updateUI();
+        }
+    });
+
+    c3l1.interactive = true;
+    c3l1.buttonMode = true;
+    c3l1.on('pointerdown', () => {
+        if (gamestate.bottleCount > 0) {
+            for (let c of coins) {
+                c.gameobj.position.set(c3l1.x, c3l1.y);
+                app.stage.addChild(c.gameobj);
+                c.moveto(c3l1.x + generateRandom(-30, 30), (c3l1.y - 100), () => {
+                    app.stage.removeChild(c.gameobj);
+                });
+            }
+            gamestate.coin += 70;
+            gamestate.bottleCount -= 1;
+            updateUI();
+        }
+    });
+
+    for (let i = 1; i <= 3; i++) {
         let s;
         let con = new PIXI.Sprite(PIXI.loader.resources[`${url}/assets/inventorycontainer.png`].texture);
         con.scale.set(0.35, 0.35);
         con.anchor.set(0.5, 0.5);
-        con.position.set(1000-i*con.width, 550-50);
-        if(i === 1){
-            bottleCountText.style.left = `${(1000-i*con.width)}px`;
+        con.position.set(1000 - i * con.width, 550 - 50);
+        if (i === 1) {
+            bottleCountText.style.left = `${(1000 - i * con.width)}px`;
             s = new PIXI.Sprite(PIXI.loader.resources[`${url}/asset2/bottle.png`].texture);
             s.scale.set(0.07, 0.07);
         }
-        else if(i === 2){
-            canCountText.style.left = `${(1000-i*con.width)}px`;
+        else if (i === 2) {
+            canCountText.style.left = `${(1000 - i * con.width)}px`;
             s = new PIXI.Sprite(PIXI.loader.resources[`${url}/asset2/can.png`].texture);
             s.scale.set(0.08, 0.08);
         }
-        else{
-            paperCountText.style.left = `${(1000-i*con.width)}px`;
+        else {
+            paperCountText.style.left = `${(1000 - i * con.width)}px`;
             s = new PIXI.Sprite(PIXI.loader.resources[`${url}/asset2/paper.png`].texture);
             s.scale.set(0.03, 0.03);
         }
-        s.position.set(1000-i*con.width-20, 550-75);
+        s.position.set(1000 - i * con.width - 20, 550 - 75);
         inventoryContainer.addChild(con);
         inventoryContainer.addChild(s);
     }
@@ -165,8 +227,9 @@ function setup() {
     app.stage.addChild(player.gameobj);
 
     riverbtn.on('pointerdown', Scene.gotoriver);
-    bus.on('pointerdown', Scene.gotofield);
+    bus.gameobj.on('pointerdown', Scene.gotofield);
     shopbtn.on('pointerdown', Scene.gotoshop);
     ItemManager.initialize(30);
+
     gameloop();
 }
