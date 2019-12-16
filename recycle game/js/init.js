@@ -8,7 +8,7 @@ let app = new PIXI.Application({
 document.body.appendChild(app.view);
 
 let url;
-let env = 'notlocal';
+let env = 'local';
 
 if (env === 'local') url = "http://localhost:8000";
 else url = "https://raw.githubusercontent.com/ciciZamri/cicizamri.github.io/master/recycle%20game";
@@ -35,10 +35,16 @@ let assetList = [
     `${url}/asset2/coin.png`
 ];
 
-PIXI.loader.add(assetList).on("progress", (loader, resource) => {
-    // console.log("loading: " + resource.url);
-    // console.log("progress: " + loader.progress + "%");
-}).load(setup);
+function start(){
+    PIXI.loader.add(assetList).on("progress", (loader, resource) => {
+        // console.log("loading: " + resource.url);
+        // console.log("progress: " + loader.progress + "%");
+    }).load(setup);
+}
+
+start();
+
+let bgmusic;
 
 let player;
 let homepagebg;
@@ -231,5 +237,17 @@ function setup() {
     shopbtn.on('pointerdown', Scene.gotoshop);
     ItemManager.initialize(30);
 
+    bgmusic = document.querySelector("audio");
+    document.addEventListener('click', ()=>{
+        console.log("play music");
+        bgmusic.loop = true;
+        bgmusic.play();
+    });
     gameloop();
+}
+
+async function music(){
+    let bgmusic = new Audio(`${url}/asset2/goodstarts.mp3`);
+    bgmusic.play();
+    bgmusic.loop = true;
 }
