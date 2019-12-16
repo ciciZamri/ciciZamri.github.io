@@ -16,6 +16,7 @@
             top: 15px;
             left: 15px;
             background-color: black;
+            display: none;
         }
 
         .fps p{
@@ -30,6 +31,7 @@
             left: 150px;
             background-color: black;
             padding: 4px;
+            display: none;
         }
 
         .coin p, .score p{
@@ -44,6 +46,7 @@
             left: 320px;
             background-color: black;
             padding: 4px;
+            display: none;
         }
 
         #bottle-count, #can-count, #paper-count{
@@ -54,9 +57,31 @@
         audio{
             display: none;
         }
+
+        #start-button{
+            width: 200px;
+            height: 60px;
+            background-color: black;
+            color: white;
+            border: solid white;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: xx-large;
+            position: absolute;
+            top: 250px;
+            left: 400px;
+        }
+
+        #start-button:hover{
+            background-color: white;
+            color: black;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
+    <button id="start-button">
+        Start
+    </button>
     <div class="fps">
         <p id="fps">60</p><p>fps</p>
     </div>

@@ -42,9 +42,25 @@ function start(){
     }).load(setup);
 }
 
-start();
+const startbtn = document.querySelector("#start-button");
+const bgmusic = document.querySelector("audio");
+bgmusic.loop = true;
 
-let bgmusic;
+startbtn.addEventListener('click', ()=>{
+    document.querySelector(".fps").style.display = "block";
+    document.querySelector(".coin").style.display = "block";
+    document.querySelector(".score").style.display = "block";
+    startbtn.style.display = "none";
+    start();
+});
+
+startbtn.addEventListener('touchstart', ()=>{
+    document.querySelector(".fps").style.display = "block";
+    document.querySelector(".coin").style.display = "block";
+    document.querySelector(".score").style.display = "block";
+    startbtn.style.display = "none";
+    start();
+});
 
 let player;
 let homepagebg;
@@ -69,6 +85,7 @@ const shop = new PIXI.Container();
 let inventoryContainer = new PIXI.Container();
 
 function setup() {
+    bgmusic.play();
     const playerSprite = new PIXI.Sprite(PIXI.loader.resources[`${url}/assets/maincharacter.png`].texture);
     homepagebg = new PIXI.Sprite(PIXI.loader.resources[`${url}/asset2/homepagebg.png`].texture);
     house = new PIXI.Sprite(PIXI.loader.resources[`${url}/asset2/house.png`].texture);
@@ -237,12 +254,17 @@ function setup() {
     shopbtn.on('pointerdown', Scene.gotoshop);
     ItemManager.initialize(30);
 
-    bgmusic = document.querySelector("audio");
-    document.addEventListener('click', ()=>{
-        console.log("play music");
-        bgmusic.loop = true;
-        bgmusic.play();
-    });
+    // document.addEventListener('click', ()=>{
+    //     console.log("play music");
+    //     bgmusic.loop = true;
+    //     bgmusic.play();
+    // });
+
+    // document.addEventListener('touchstart', ()=>{
+    //     console.log("play music");
+    //     bgmusic.loop = true;
+    //     bgmusic.play();
+    // });
     gameloop();
 }
 
