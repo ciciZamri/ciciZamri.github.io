@@ -44,7 +44,7 @@ class PhysicsBody {
 
     update(delta) {
         this.updatePosition(delta);
-        //this.updateVelocity(delta);
+        this.updateVelocity(delta);
     }
 }
 
