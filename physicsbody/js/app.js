@@ -2,7 +2,7 @@ const fpsText = document.querySelector("#fps");
 let view = new ViewPort(viewportContainer);
 view.createView();
 let l = [];
-for (let i = 0; i < 5; i++) {
+for (let i = 0; i < 40; i++) {
     const o = view.addObject();
     l.push(new PhysicsBody(o, PhysicsBody.radius, Math.random() * 100, Math.random() * 100));
 }

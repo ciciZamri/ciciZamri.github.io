@@ -12,7 +12,7 @@ class ViewPort {
     createView() {
         this.createScene();
         this.createRenderer();
-        this.createLights();
+        //this.createLights();
         this.createCamera();
         this.render();
     }
@@ -52,7 +52,7 @@ class ViewPort {
         const fov = 70; //field of view
         const aspect = this.container.clientWidth / this.container.clientHeight;
         const near = 0.1;
-        const far = 100;
+        const far = 10;
 
         //this.camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
         this.camera = new THREE.OrthographicCamera(this.container.clientWidth/-2, this.container.clientWidth/2, this.container.clientHeight/2, this.container.clientHeight/-2, near, far);
@@ -64,7 +64,7 @@ class ViewPort {
 
     addObject() {
         const radius = PhysicsBody.radius;
-        const segments = 16;
+        const segments = 9;
         const geometry = new THREE.CircleBufferGeometry(radius, segments);
         const mesh = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial);
         //mesh.position.set(0, 0, -10);
