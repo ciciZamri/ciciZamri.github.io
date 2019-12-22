@@ -19,7 +19,7 @@ class ViewPort {
 
     createScene() {
         this.scene = new THREE.Scene();
-        this.scene.background = new THREE.Color('skyblue');
+        this.scene.background = new THREE.Color('black');
     }
 
     createRenderer() {
@@ -66,7 +66,8 @@ class ViewPort {
         const radius = PhysicsBody.radius;
         const segments = 9;
         const geometry = new THREE.CircleBufferGeometry(radius, segments);
-        const mesh = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial);
+        const material = new THREE.MeshBasicMaterial({color: `hsl(${parseInt(Math.random()*359)}, 100%, 50%)`});
+        const mesh = new THREE.Mesh(geometry, material);
         //mesh.position.set(0, 0, -10);
         this.scene.add(mesh);
         this.render();
