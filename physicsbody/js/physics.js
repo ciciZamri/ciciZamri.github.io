@@ -13,7 +13,7 @@ class PhysicsBody {
         this.obj.position.y = startY;
         this.velocityX = Math.random() * 60 - 30;
         this.velocityY = Math.random() * 60 - 30;
-        this.accelerationY = 0;//ParticlesManager.gravity;
+        this.accelerationY = ParticlesManager.gravity;
         this.isCollide = false;
     }
 
