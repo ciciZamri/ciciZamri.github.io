@@ -1,61 +1,89 @@
+const viewportContainer = document.querySelector("#scene-container");
+let width = viewportContainer.clientWidth;
+let height = viewportContainer.clientHeight;
+
 class PhysicsBody {
     obj;
-    static radius = 10;
+    static radius = 2;
     velocityX;
     velocityY;
     accelerationX;
     accelerationY;
-    isCollide;
+    damping;
 
     constructor(mesh, startX, startY) {
         this.obj = mesh;
         this.obj.position.x = startX;
         this.obj.position.y = startY;
-        this.velocityX = Math.random() * 60 - 30;
-        this.velocityY = Math.random() * 60 - 30;
-        this.accelerationY = ParticlesManager.gravity;
-        this.isCollide = false;
+        this.velocityX = Math.random() * 5 - 2.5;
+        this.velocityY = Math.random() * 5 - 2.5;
+        this.accelerationY = 0;
+        this.accelerationX = 0;
+        this.damping = 0.3;
     }
 
     updatePosition(delta) {
         this.obj.position.x += this.velocityX * delta * 10;
         this.obj.position.y += this.velocityY * delta * 10;
-        if (this.obj.position.x + PhysicsBody.radius > (viewportContainer.clientWidth / 2)) {
-            this.velocityX = -1 * (Math.abs(this.velocityX));
-            this.obj.position.x = (viewportContainer.clientWidth / 2) - PhysicsBody.radius;
+        if (this.obj.position.x + PhysicsBody.radius > (width / 2)) {
+            this.velocityX = -(this.damping) * (Math.abs(this.velocityX));
+            this.obj.position.x = (width / 2) - PhysicsBody.radius;
         }
-        if (this.obj.position.x - PhysicsBody.radius < (viewportContainer.clientWidth / -2)) {
-            this.velocityX = Math.abs(this.velocityX);
-            this.obj.position.x = (viewportContainer.clientWidth / -2) + PhysicsBody.radius;
+        if (this.obj.position.x - PhysicsBody.radius < (width / -2)) {
+            this.velocityX = (this.damping)*Math.abs(this.velocityX);
+            this.obj.position.x = (width / -2) + PhysicsBody.radius;
         }
-        if (this.obj.position.y + PhysicsBody.radius > (viewportContainer.clientHeight / 2)) {
-            this.velocityY = -1 * (Math.abs(this.velocityY));
-            this.obj.position.y = (viewportContainer.clientHeight / 2) - PhysicsBody.radius;
+        if (this.obj.position.y + PhysicsBody.radius > (height / 2)) {
+            this.velocityY = -(this.damping) * (Math.abs(this.velocityY));
+            this.obj.position.y = (height / 2) - PhysicsBody.radius;
         }
-        if (this.obj.position.y - PhysicsBody.radius < (viewportContainer.clientHeight / -2)) {
-            this.velocityY = Math.abs(this.velocityY);
-            this.obj.position.y = (viewportContainer.clientHeight / -2) + PhysicsBody.radius;
+        if (this.obj.position.y - PhysicsBody.radius < (height / -2)) {
+            this.velocityY = (this.damping)*Math.abs(this.velocityY);
+            this.obj.position.y = (height / -2) + PhysicsBody.radius;
         }
     }
 
     updateVelocity(delta) {
+        this.velocityX += this.accelerationX * delta * 10;
         this.velocityY += this.accelerationY * delta * 10;
+        if (ParticlesManager.applygravity) {
+            this.velocityY += (-9.8 * delta);
+        }
+    }
+
+    updateAcceleration() {
+        for (let point of ParticlesManager.pointforces) {
+            const dx = point[1] - this.obj.position.x;
+            const dy = point[2] - this.obj.position.y;
+            if (Math.abs(dx) < 25 && Math.abs(dy) < 25) {
+                this.velocityX = 0;
+                this.velocityY = 0;
+            }
+            else {
+                this.accelerationX = (point[0] / ((dx * dx) + (dy * dy))) * (Math.cos(Math.atan(dy / dx))) * (Math.abs(dx) / dx);
+                this.accelerationY = (point[0] / ((dx * dx) + (dy * dy))) * (Math.sin(Math.atan(dy / dx))) * (Math.abs(dy) / dy);
+            }
+            //console.log(dx, dy, this.accelerationX);
+        }
     }
 
     update(delta) {
         this.updatePosition(delta);
         this.updateVelocity(delta);
+        this.updateAcceleration();
     }
 }
 
 class ParticlesManager {
-    static gravity = -9.8;
+    static applygravity = true;
     static particles = [];
+    static strength = 90000;
+    static pointforces = [[this.strength, 0, 0], [this.strength, 0, 60], [this.strength, 0, -60]];
 
     static createParticles(count, view) {
         for (let i = 0; i < count; i++) {
             const particle = view.addObject();
-            ParticlesManager.particles.push(new PhysicsBody(particle, PhysicsBody.radius, Math.random() * viewportContainer.clientWidth - viewportContainer.clientWidth / 2, Math.random() * viewportContainer.clientHeight - viewportContainer.clientHeigt / 2));
+            ParticlesManager.particles.push(new PhysicsBody(particle, Math.random() * width - width / 2, Math.random()*(height/-5)-400));
         }
     }
 
@@ -67,20 +95,16 @@ class ParticlesManager {
                 const distance = Math.sqrt(xx + yy);
 
                 if (distance < PhysicsBody.radius * 2) {
-                    if (!ParticlesManager.particles[i].isCollide && !ParticlesManager.particles[j].isCollide) {
-                        ParticlesManager.particles[i].isCollide = ParticlesManager.particles[j].isCollide = true;
-                        const tempx = ParticlesManager.particles[i].velocityX;
-                        ParticlesManager.particles[i].velocityX = ParticlesManager.particles[j].velocityX;
-                        ParticlesManager.particles[j].velocityX = tempx;
+                    ParticlesManager.particles[i].isCollide = ParticlesManager.particles[j].isCollide = true;
+                    const tempx = ParticlesManager.particles[i].velocityX;
+                    ParticlesManager.particles[i].velocityX = ParticlesManager.particles[j].velocityX;
+                    ParticlesManager.particles[j].velocityX = tempx;
 
-                        const tempy = ParticlesManager.particles[i].velocityY;
-                        ParticlesManager.particles[i].velocityY = ParticlesManager.particles[j].velocityY;
-                        ParticlesManager.particles[j].velocityY = tempy;
-                    }
+                    const tempy = ParticlesManager.particles[i].velocityY;
+                    ParticlesManager.particles[i].velocityY = ParticlesManager.particles[j].velocityY;
+                    ParticlesManager.particles[j].velocityY = tempy;
                 }
-                else if (distance > PhysicsBody.radius * 2) {
-                    ParticlesManager.particles[i].isCollide = ParticlesManager.particles[j].isCollide = false;
-                }
+
             }
         }
     }

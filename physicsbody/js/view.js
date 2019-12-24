@@ -78,5 +78,3 @@ class ViewPort {
         this.renderer.render(this.scene, this.camera);
     }
 }
-
-const viewportContainer = document.querySelector("#scene-container");
