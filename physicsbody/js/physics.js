@@ -9,7 +9,7 @@ class PhysicsBody {
     velocityY;
     accelerationX;
     accelerationY;
-    damping;
+    //damping;
 
     constructor(mesh, startX, startY) {
         this.obj = mesh;
@@ -19,26 +19,26 @@ class PhysicsBody {
         this.velocityY = Math.random() * 5 - 2.5;
         this.accelerationY = 0;
         this.accelerationX = 0;
-        this.damping = 0.3;
+        //this.damping = 0.3;
     }
 
     updatePosition(delta) {
         this.obj.position.x += this.velocityX * delta * 10;
         this.obj.position.y += this.velocityY * delta * 10;
         if (this.obj.position.x + PhysicsBody.radius > (width / 2)) {
-            this.velocityX = -(this.damping) * (Math.abs(this.velocityX));
+            this.velocityX = -(0.5) * (Math.abs(this.velocityX));
             this.obj.position.x = (width / 2) - PhysicsBody.radius;
         }
         if (this.obj.position.x - PhysicsBody.radius < (width / -2)) {
-            this.velocityX = (this.damping)*Math.abs(this.velocityX);
+            this.velocityX = (0.5)*Math.abs(this.velocityX);
             this.obj.position.x = (width / -2) + PhysicsBody.radius;
         }
         if (this.obj.position.y + PhysicsBody.radius > (height / 2)) {
-            this.velocityY = -(this.damping) * (Math.abs(this.velocityY));
+            this.velocityY = -(0.5) * (Math.abs(this.velocityY));
             this.obj.position.y = (height / 2) - PhysicsBody.radius;
         }
         if (this.obj.position.y - PhysicsBody.radius < (height / -2)) {
-            this.velocityY = (this.damping)*Math.abs(this.velocityY);
+            this.velocityY = (0.5)*Math.abs(this.velocityY);
             this.obj.position.y = (height / -2) + PhysicsBody.radius;
         }
     }
