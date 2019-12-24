@@ -27,8 +27,8 @@ class ViewPort {
         this.renderer.setSize(this.container.clientWidth, this.container.clientHeight);
         this.renderer.setPixelRatio(window.devicePixelRatio);
 
-        this.renderer.gammaFactor = 1.2;
-        this.renderer.gammaOutput = true;
+        //this.renderer.gammaFactor = 1.2;
+        //this.renderer.gammaOutput = true;
 
         // this.renderer.physicallyCorrectLights = true;
 
@@ -52,7 +52,7 @@ class ViewPort {
         const fov = 70; //field of view
         const aspect = this.container.clientWidth / this.container.clientHeight;
         const near = 0.1;
-        const far = 10;
+        const far = 5;
 
         //this.camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
         this.camera = new THREE.OrthographicCamera(this.container.clientWidth/-2, this.container.clientWidth/2, this.container.clientHeight/2, this.container.clientHeight/-2, near, far);
@@ -64,7 +64,7 @@ class ViewPort {
 
     addObject() {
         const radius = PhysicsBody.radius;
-        const segments = 9;
+        const segments = 6;
         const geometry = new THREE.CircleBufferGeometry(radius, segments);
         const material = new THREE.MeshBasicMaterial({color: `hsl(${parseInt(Math.random()*359)}, 100%, 50%)`});
         const mesh = new THREE.Mesh(geometry, material);
