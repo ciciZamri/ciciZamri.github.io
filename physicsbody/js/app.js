@@ -1,7 +1,7 @@
 const fpsText = document.querySelector("#fps");
 const view = new ViewPort(viewportContainer);
 view.createView();
-ParticlesManager.createParticles(700, view);
+ParticlesManager.createParticles(300, view);
 
 let previousTime = 0;
 function loop(time) {
