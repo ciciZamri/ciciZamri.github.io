@@ -78,7 +78,7 @@ class PhysicsBody {
 }
 
 class ParticlesManager {
-    static applygravity = true;
+    static applygravity = false;
     static particles = [];
     static gap = 50;
     static pointforces = [
