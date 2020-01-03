@@ -1,7 +1,7 @@
 const fpsText = document.querySelector("#fps");
 const view = new ViewPort(viewportContainer);
 view.createView();
-ParticlesManager.createParticles(300, view);
+ParticlesManager.createParticles(500, view);
 
 let digit = 0;
 let forceStrength = 500;
@@ -50,7 +50,7 @@ function loop(time) {
     for (let p of ParticlesManager.particles) {
         p.update(delta / 1000)
     }
-    ParticlesManager.checkCollision();
+    //ParticlesManager.checkCollision();
     view.render();
     requestAnimationFrame(loop);
 }

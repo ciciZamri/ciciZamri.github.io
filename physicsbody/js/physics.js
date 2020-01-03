@@ -78,7 +78,7 @@ class PhysicsBody {
 }
 
 class ParticlesManager {
-    static applygravity = true;
+    static applygravity = false;
     static particles = [];
     static gap = 50;
     static pointforces = [
@@ -100,7 +100,7 @@ class ParticlesManager {
     static createParticles(count, view) {
         for (let i = 0; i < count; i++) {
             const particle = view.addObject();
-            ParticlesManager.particles.push(new PhysicsBody(particle, Math.random() * width - width / 2, Math.random() * (height / -2)));
+            ParticlesManager.particles.push(new PhysicsBody(particle, Math.random() * width - width / 2, Math.random() * height - height / 2));
         }
     }
 
