@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Language model dataset</title>
+</head>
+<body>
+    <div id="data-list"></div>
+    <button class="raised-btn" id="add-data-btn">Add</button>
+    <button class="raised-btn" id="save-data-btn">Save</button>
+    <div class="popup-form" id="data-form">
+        <div class="form-header">
+            <div class="close-form">X</div>
+        </div>
+        <label>Source</label>
+        <input type="text" name="source" id="text-source">
+        <label>Brief description</label>
+        <input type="text" id="text-description">
+        <label>Text data</label>
+        <input type="text" name="data" id="text-data">
+        <button id="done-btn">Done</button>
+    </div>
+    <script src="../js/language_model_dataset.js"></script>
+</body>
+</html>
