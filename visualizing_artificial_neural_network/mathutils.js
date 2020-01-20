@@ -1,4 +1,4 @@
-class MathUtil {
+class M {
     static matmul(matrix1, matrix2) {
         let result = [];
         for(let i = 0 ; i<matrix1.length ; i++){

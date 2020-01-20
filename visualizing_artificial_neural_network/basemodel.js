@@ -12,9 +12,6 @@ class BasicModel{
 
     static set_weight_bias(){}
 
-    static computel1(){}
-    static computel2(){}
-    static computel3(){}
 
     static relu(val){
         return Math.max(0, val);
