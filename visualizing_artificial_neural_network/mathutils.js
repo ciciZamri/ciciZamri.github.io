@@ -18,6 +18,23 @@ class M {
         return result;
     }
 
+    static vecadd(vector1, vector2){
+        let result = [];
+        for(let i = 0 ; i<vector1.length ; i++){
+            result.push([vector1[i][0] + vector2[i][0]]);
+        }
+
+        return result;
+    }
+
+    static sigmoid(vec){
+        let result = [];
+        for(let i = 0 ; i<vec.length ; i++){
+            result.push(1/(1+Math.exp(-vec[i][0])))
+        }
+        return result;
+    }
+
     static transpose(matrix){
         let transposed = [[]];
         for(let i = 0 ; i<matrix.length ; i++){
@@ -27,5 +44,18 @@ class M {
         }
 
         return transposed;
+    }
+
+    static normalize(vec){
+        let result = [];
+        let total = 0.0;
+        for(let i = 0 ; i<vec.length ; i++){
+            total += vec[i][0];
+        }
+        for(let i = 0 ; i<vec.length ; i++){
+            result.push(vec[i][0]/total);
+        }
+    
+        return result;
     }
 }

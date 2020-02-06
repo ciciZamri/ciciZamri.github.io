@@ -1,7 +1,9 @@
 let devicewidth = window.innerWidth;
 let deviceheight = window.innerHeight;
-
+let alpha2 = 0;
 let pixelInputs = [];
+
+let model = new Model(use_pretrained = true);
 
 const drawingCanvas = document.querySelector("#drawing-canvas");
 drawingCanvas.width = 28 * 10;
@@ -17,6 +19,7 @@ function start() {
         pixelInputs.push(row);
     }
 
+    model.forward(pixelInputs);
     updateDrawingCanvas();
     drawneurons();
 }
@@ -48,17 +51,18 @@ drawingCanvas.addEventListener('mouseup', (e) => {
 
 function paint(x, y) {
     pixelInputs[y][x] = 1;
-    pixelInputs[y + 1][x] = 1;
-    pixelInputs[y - 1][x] = 1;
+    pixelInputs[y==27 ? y : y + 1][x] = 1;
+    pixelInputs[y==0 ? y : y - 1][x] = 1;
     pixelInputs[y][x + 1] = 1;
     pixelInputs[y][x - 1] = 1;
-    pixelInputs[y + 1][x + 1] = 1;
-    pixelInputs[y + 1][x - 1] = 1;
-    pixelInputs[y - 1][x + 1] = 1;
-    pixelInputs[y - 1][x - 1] = 1;
+    pixelInputs[y==27 ? y : y + 1][x + 1] = 1;
+    pixelInputs[y==27 ? y : y + 1][x - 1] = 1;
+    pixelInputs[y==0 ? y : y - 1][x + 1] = 1;
+    pixelInputs[y==0 ? y : y - 1][x - 1] = 1;
 }
 
 function updateDrawingCanvas() {
+    model.forward(pixelInputs);
     const ctx = drawingCanvas.getContext('2d');
     ctx.clearRect(1, 1, 280, 280);
     ctx.strokeStyle = 'rgba(0, 0, 0, 0.1)';
@@ -81,27 +85,30 @@ function drawneurons() {
 
     const padding = 3;
     const radius = ((devicewidth - 20) / (50 * 2) - padding / 2);
+    const alpha1 = M.sigmoid(model.l1_output);
     for (let j = 1; j <= 6; j++) {
         ctx.beginPath();
         for (let i = 1; i <= 50; i++) {
-            ctx.fillStyle = "rgba(255, 255, 255, 1)";
+            ctx.fillStyle = `rgba(255, 255, 255, ${alpha1[(50*(j-1)) + i]})`;
             ctx.arc(i * (2 * radius + padding), j * (2 * radius + padding), radius, 0, Math.PI * 2, true);
         }
         ctx.fill();
     }
 
+    alpha2 = M.sigmoid(model.l2_output);
     for (let j = 1; j <= 2; j++) {
         ctx.beginPath();
         for (let i = 1; i <= 50; i++) {
-            ctx.fillStyle = "rgba(255, 255, 255, 1)";
+            ctx.fillStyle = `rgba(255, 255, 255, ${alpha2[(50*(j-1)) + i]})`;
             ctx.arc(i * (2 * radius + padding), 200 + j * (2 * radius + padding), radius, 0, Math.PI * 2, true);
         }
         ctx.fill();
     }
 
+    const alpha3 = M.sigmoid(model.final_output);
     ctx.beginPath();
     for (let i = 20; i < 30; i++) {
-        ctx.fillStyle = "rgba(255, 255, 255, 0.4)";
+        ctx.fillStyle = `rgba(255, 255, 255, ${alpha3[i]})`;
         ctx.arc(i * (2 * radius + padding), 300 + 1 * (2 * radius + padding), radius, 0, Math.PI * 2, true);
     }
     ctx.fill();
