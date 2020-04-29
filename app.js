@@ -6,3 +6,5 @@ document.querySelector(".nav-bar-close-btn").addEventListener('click', (e)=>{
     console.log("close");
     document.querySelector(".nav-bar-actions").style.transform = "translateX(150px)";
 });
+
+//menu button
