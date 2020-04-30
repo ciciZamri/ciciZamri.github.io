@@ -1,6 +1,6 @@
 :root{
     --navbar-height: 70px;
-    --sidebar-width: 150px;
+    --sidebar-width: 200px;
 }
 
 .main-header{
@@ -14,10 +14,11 @@
     box-sizing: border-box;
     padding-right: 16px;
     width: 100vw;
-    background-color: rgba(255, 255, 255, 0);
+    background-color: rgba(105, 105, 105, 0);
     justify-content: space-between;
     align-items: center;
     height: var(--navbar-height);
+    z-index: 5000;
 }
 
 .nav-bar-brand{
@@ -59,9 +60,19 @@
     text-decoration: inherit;
 }
 
+hr{
+    background-color: white;
+    margin: 0;
+}
+
+.pt-6{
+    padding-top: calc(var(--navbar-height) + 16px);
+}
+
 @media (max-width: 576px) {
     .nav-bar{
         padding-right: 0px;
+        position: fixed;
     }
     .nav-bar-brand{
         display: inline-block;
