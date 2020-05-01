@@ -19,10 +19,12 @@
     align-items: center;
     height: var(--navbar-height);
     z-index: 5000;
+    transition: 400ms;
 }
 
 .nav-bar-brand{
     font-size: x-large;
+    font-weight: 500;
     padding: 16px;
     cursor: pointer;
 }
