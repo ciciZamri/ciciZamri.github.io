@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Coda&family=Coda+Caption:wght@800&family=Notable&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Coda&family=Roboto+Mono:wght@500&family=Coda+Caption:wght@800&family=Notable&display=swap');
 
 :root{
     --navbar-height: 70px;
@@ -9,6 +9,9 @@ body{
     background-image: url("bg.jpg");
     color: white;
     background-size: 100% auto;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.872);
 }
 
 p{
@@ -110,6 +113,84 @@ hr{
     padding-top: calc(var(--navbar-height) + 16px);
 }
 
+.profile-photo{
+    width: auto;
+    height: 96px;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+
+.content{
+    width: 500px;
+    margin: 0 auto;
+    padding-top: 72px;
+    text-align: center;
+    font-size: x-large;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.item{
+    background-color: transparent;
+    width: 256px;
+    height: 200px;
+    overflow: hidden;
+    margin: 4px;
+    border: thin solid white;
+}
+
+.item .img-v{
+    max-width: 100%;
+    height: auto;
+    cursor: pointer;
+}
+
+.item .img-h{
+    max-height: 100%;
+    width: auto;
+    cursor: pointer;
+}
+
+.item p{
+    z-index: 5;
+    position: absolute;
+    width: 253px;
+    padding: 4px;
+    text-align: center;
+    background-color: rgb(58, 58, 58);
+}
+
+.design-container{
+    position: absolute;
+    transform: translateX(100vw);
+    transition: 400ms;
+}
+
+.application-container{
+    position: absolute;
+    transition: 400ms;
+}
+
+.n-before{
+    left: 56px;
+    font-size: xx-large;
+    border: medium solid white;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    position: absolute;
+    top: 50vh;
+}
+
+.n-next{
+    right: 56px;
+    font-size: xx-large;
+    border: medium solid white;
+    border-radius: 50%;
+    cursor: pointer;
+    position: absolute;
+    top: 50vh;
+}
+
 /* style for small screen device */
 @media (max-width: 576px) {
     body{
@@ -150,7 +231,7 @@ hr{
         display: block;
         margin-right: auto;
         text-align: center;
-        
+        font-size: larger;
     }
 
     .nav-bar-menu-btn, .nav-bar-close-btn{
@@ -165,6 +246,13 @@ hr{
     .nav-bar-close-btn{
         margin-bottom: 0;
         color: white;
+    }
+
+    .content{
+        width: 90vw;
+        margin: 0 auto;
+        padding-top: 64px;
+        font-size: larger;
     }
     
 }
