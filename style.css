@@ -1,11 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Coda&family=Coda+Caption:wght@800&family=Notable&display=swap');
+
 :root{
     --navbar-height: 70px;
-    --sidebar-width: 200px;
+    --sidebar-width: 100vw;
 }
 
-.main-header{
-    height: 100vh;
-    box-sizing: border-box;
+body{
+    background-image: url("bg.jpg");
+    color: white;
+    background-size: 100% auto;
+}
+
+p{
+    margin: 0;
+    padding: 0;
+}
+
+.notable-font{
+    font-family: 'Notable', sans-serif;
+    letter-spacing: 3px;
+}
+.coda-font{
+    font-family: 'Coda', cursive;
+    font-size: medium;
+}
+
+.main-body{
+    padding-top: 256px;
+}
+
+.action-btn{
+    padding: 4px 16px;
+    border: 1px solid white;
+    color: white;
+    background-color: black;
+    border-radius: 28px;
+    margin-top: 4px;
+    font-size: medium;
+    cursor: pointer;
+}
+.action-btn:hover{
+    color: black;
+    background-color: white;
 }
 
 .nav-bar{
@@ -20,6 +56,8 @@
     height: var(--navbar-height);
     z-index: 5000;
     transition: 400ms;
+    font-family: 'Coda', cursive;
+    font-size: 24px;
 }
 
 .nav-bar-brand{
@@ -37,6 +75,7 @@
     display: inline-block;
     cursor: pointer;
     padding: 12px;
+    font-size: medium;
 }
 
 .nav-bar-items:hover{
@@ -71,7 +110,17 @@ hr{
     padding-top: calc(var(--navbar-height) + 16px);
 }
 
+/* style for small screen device */
 @media (max-width: 576px) {
+    body{
+        color: white;
+        background-size: auto 100vh;
+    }
+
+    .main-body{
+        padding-top: 200px;
+    }
+    
     .nav-bar{
         padding-right: 0px;
         position: fixed;
@@ -100,6 +149,7 @@ hr{
         width: fit-content;
         display: block;
         margin-right: auto;
+        text-align: center;
         
     }
 
@@ -109,6 +159,7 @@ hr{
         border: none;
         margin: 16px;
         padding: 0;
+        color: white;
     }
 
     .nav-bar-close-btn{
