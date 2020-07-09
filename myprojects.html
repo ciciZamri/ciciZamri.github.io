@@ -10,12 +10,21 @@
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="style.css">
     <title>cici site</title>
+    <style>
+        body {
+            background: url("bg.jpg");
+        }
+        img{
+            image-rendering: optimizeSpeed;
+        }
+    </style>
+
 </head>
 
 <body>
     <nav class="nav-bar">
-        <div class="nav-bar-brand">
-            <a class="unstyle-link" href="index.html">CICI</a>
+        <div class="nav-bar-brand ml-2">
+            <a class="unstyle-link" href="index.html"><img src="img/logo.png" alt="cici" width="72px"></a>
         </div>
         <button class="nav-bar-menu-btn">
             <i class="material-icons">menu</i>
@@ -36,10 +45,12 @@
             </div>
         </div>
     </nav>
-    <div class="container">
+    <div class="container item-container">
+        <div class="my-2 mx-auto" style="width: 75vw;">
+            <h4 class="d-inline design-btn">Design</h4><h4 class="d-inline mx-2 application-btn">Application</h4>
+        </div>
         <div class="design-container">
-            <h1 class="pt-6 m-2">Design</h1>
-            <div class="d-flex flex-wrap align-content-between w-auto">
+            <div class="d-flex flex-wrap align-content-between w-auto align-items-center justify-content-between">
                 <div class="item">
                     <p>Poster design</p>
                     <a href="img/poster-1.png" target="_blank"><img class="img-v" src="img/poster-1.png"
@@ -50,8 +61,8 @@
                             src="img/poster-2.png" alt="poster"></a>
                 </div>
                 <div class="item">
-                    <p>Poster design</p><a href="img/poster-1.png" target="_blank"><img class="img-v"
-                            src="img/poster-1.png" alt="poster"></a>
+                    <p>3D illustration</p><a href="img/render-1.jpg" target="_blank"><img class="img-v"
+                            src="img/render-1.jpg" alt="poster"></a>
                 </div>
                 <div class="item">
                     <p>3D illustration</p><a href="img/render-2.jpg" target="_blank"><img class="img-h"
@@ -65,22 +76,18 @@
                     <p>3D illustration</p><a href="img/render-3.png" target="_blank"><img class="img-h"
                             src="img/render-3.png" alt="poster"></a>
                 </div>
+                <div class="item">
+                    <p>3D illustration</p><a href="img/render-4.png" target="_blank"><img class="img-h"
+                            src="img/render-4.png" alt="poster"></a>
+                </div>
             </div>
         </div>
         <div class="application-container">
-            <h1 class="pt-6 m-2">Application</h1>
             <div class="d-flex flex-wrap align-content-between w-auto">
-                <div class="item m-2">2</div>
-                <div class="item m-2">2</div>
-                <div class="item m-2">2</div>
-                <div class="item m-2">2</div>
-                <div class="item m-2">2</div>
                 <div class="item m-2">2</div>
             </div>
         </div>
     </div>
-    <i class="n-before">navigate_before</i>
-    <i class="n-next">navigate_next</i>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
         crossorigin="anonymous"></script>

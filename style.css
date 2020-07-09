@@ -10,7 +10,6 @@ body{
     color: white;
     background-size: 100% auto;
     background-repeat: no-repeat;
-    overflow: hidden;
     background-color: rgba(0, 0, 0, 0.872);
 }
 
@@ -33,13 +32,13 @@ p{
 }
 
 .action-btn{
-    padding: 4px 16px;
+    padding: 12px 16px;
     border: 1px solid white;
     color: white;
     background-color: black;
     border-radius: 28px;
     margin-top: 4px;
-    font-size: medium;
+    font-size: small;
     cursor: pointer;
 }
 .action-btn:hover{
@@ -53,7 +52,7 @@ p{
     box-sizing: border-box;
     padding-right: 16px;
     width: 100vw;
-    background-color: rgba(105, 105, 105, 0);
+    background-color: rgba(0, 0, 0, 0.212);
     justify-content: space-between;
     align-items: center;
     height: var(--navbar-height);
@@ -129,12 +128,41 @@ hr{
     font-family: 'Roboto Mono', monospace;
 }
 
+.item-container{
+    padding-top: 84px;
+}
+
+.application-container{
+    display: none;
+    width: 75vw;
+    margin: 0 auto;
+}
+
+.design-container{
+    width: 75vw;
+    margin: 0 auto;
+}
+
+.design-btn, .application-btn{
+    padding: 4px;
+}
+
+.design-btn:hover, .application-btn:hover{
+    cursor: pointer;
+    background-color: rgb(95, 95, 95);
+}
+
+.application-btn{
+    opacity: 0.5;
+    font-weight: 100;
+}
+
 .item{
     background-color: transparent;
     width: 256px;
     height: 200px;
     overflow: hidden;
-    margin: 4px;
+    margin: 4px auto;
     border: thin solid white;
 }
 
@@ -159,37 +187,6 @@ hr{
     background-color: rgb(58, 58, 58);
 }
 
-.design-container{
-    position: absolute;
-    transform: translateX(100vw);
-    transition: 400ms;
-}
-
-.application-container{
-    position: absolute;
-    transition: 400ms;
-}
-
-.n-before{
-    left: 56px;
-    font-size: xx-large;
-    border: medium solid white;
-    border-radius: 50%;
-    cursor: pointer;
-    display: none;
-    position: absolute;
-    top: 50vh;
-}
-
-.n-next{
-    right: 56px;
-    font-size: xx-large;
-    border: medium solid white;
-    border-radius: 50%;
-    cursor: pointer;
-    position: absolute;
-    top: 50vh;
-}
 
 /* style for small screen device */
 @media (max-width: 576px) {

@@ -18,28 +18,34 @@ window.addEventListener('scroll', (e)=>{
     lastY = window.scrollY;
 });
 
-let current = 0;
+// let current = 0;
 
-function rebuild(){
-    if(current === 0){
-        document.querySelector(".n-before").style.display = "none";
-        document.querySelector(".application-container").style.transform = "translateX(100vw)";
-        document.querySelector(".n-next").style.display = "block";
-        document.querySelector(".design-container").style.transform = "translateX(0vw)";
-    }else{
-        document.querySelector(".n-before").style.display = "block";
-        document.querySelector(".application-container").style.transform = "translateX(0vw)";
-        document.querySelector(".n-next").style.display = "none";
-        document.querySelector(".design-container").style.transform = "translateX(-100vw)";
-    }
-}
-document.querySelector(".n-next").addEventListener('click', (e)=>{
-    current = 1;
-    rebuild();
+// function rebuild(){
+//     if(current === 0){
+//         document.querySelector(".n-before").style.display = "none";
+//         document.querySelector(".application-container").style.transform = "translateX(100vw)";
+//         document.querySelector(".n-next").style.display = "block";
+//         document.querySelector(".design-container").style.transform = "translateX(0vw)";
+//     }else{
+//         document.querySelector(".n-before").style.display = "block";
+//         document.querySelector(".application-container").style.transform = "translateX(0vw)";
+//         document.querySelector(".n-next").style.display = "none";
+//         document.querySelector(".design-container").style.transform = "translateX(-100vw)";
+//     }
+// }
+document.querySelector(".design-btn").addEventListener('click', (e)=>{
+    document.querySelector(".design-container").style.display = "block";
+    document.querySelector(".application-container").style.display = "none";
+    document.querySelector(".application-btn").style.opacity = "0.5";
+    document.querySelector(".design-btn").style.opacity = "1.0";
+    document.querySelector(".application-btn").style.fontWeight = "100";
+    document.querySelector(".design-btn").style.fontWeight = "600";
 });
-document.querySelector(".n-before").addEventListener('click', (e)=>{
-    current = 0;
-    rebuild();
+document.querySelector(".application-btn").addEventListener('click', (e)=>{
+    document.querySelector(".design-container").style.display = "none";
+    document.querySelector(".application-container").style.display = "block";
+    document.querySelector(".application-btn").style.opacity = "1.0";
+    document.querySelector(".design-btn").style.opacity = "0.5";
+    document.querySelector(".application-btn").style.fontWeight = "600";
+    document.querySelector(".design-btn").style.fontWeight = "100";
 });
-
-rebuild();
