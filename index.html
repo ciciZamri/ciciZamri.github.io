@@ -1,62 +1,90 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <script data-ad-client="ca-pub-6154619544984512" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="bootstrap.css">
-    <link rel="stylesheet" href="style.css">
-    <title>cici site</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link rel="stylesheet" href="./index.css">
+    <title>Hammizie Zamri</title>
 </head>
 
 <body>
-    <nav class="nav-bar">
-        <div class="nav-bar-brand ml-2">
-            <a class="unstyle-link" href="index.html"><img src="img/logo.png" alt="cici" width="72px"></a>
-        </div>
-        <button class="nav-bar-menu-btn">
-            <i class="material-icons">menu</i>
-        </button>
-        <div class="nav-bar-actions">
-            <button class="nav-bar-close-btn">
-                <i class="material-icons">close</i>
-            </button>
-            <hr>
-            <div class="nav-bar-items">
-                <a class="unstyle-link" href="myprojects.html">My Projects</a>
-            </div>
-            <div class="nav-bar-items">
-                <a class="unstyle-link" href="aboutme.html">About me</a>
-            </div>
-            <div class="nav-bar-items">
-                <a class="unstyle-link" href="blog.html">Blog</a>
-            </div>
-            <div class="nav-bar-items">
-                <a class="unstyle-link" href="contact.html">Contact</a>
-            </div>
-        </div>
+    <img class="absolute top-0 filter brightness-50 -z-10 h-full object-cover min-w-full" src="./images/abstract7.jpg">
+    <nav class="flex justify-between text-white py-4 px-5 align-baseline w-full">
+        <p class="z-10 text-xl font-bold">CICI</p>
     </nav>
-    <div class="container">
-        <div class="main-body">
-            <p class="notable-font h2">MY NAME IS</p>
-            <p class="notable-font h2">MUHAMMAD HAMMIZIE</p>
-            <p class="coda-font h6">DESIGNER</p>
-            <p class="coda-font h6">MOBILE and WEB APP DEVELOPER</p>
-            <a href="myprojects.html"><button class="action-btn coda-font h6">My Projects</button></div></a>
+    <header class="z-10 flex justify-center items-center h-96 text-white px-10 mt-5">
+        <div class="max-w-3xl" data-aos="fade-up">
+            <p class="font-anton text-4xl md:text-5xl pb-5 leading-tight md:leading-tight">
+                <span>Hello. My name is Hammizie Zamri.</span><br>
+                <span>I am a fullstack mobile/web app developer.</span>
+            </p>
+            <button
+                id="action-btn"
+                class="bg-white flex justify-center items-center text-black px-5 py-2 duration-200 font-medium rounded hover:bg-gray-900 hover:text-white">
+                <p class="pb-1">Previous works</p>
+                <span class="material-icons pl-1 text-base font-bold">keyboard_double_arrow_down</span>
+            </button>
         </div>
+    </header>
+    <div id="content" >
+        <section class="">
+            <div class="font-anton flex justify-center text-3xl pt-12 pb-1 font-semibold">Past projects</div>
+            <a class="text-center sm:text-left grid grid-cols-1 sm:grid-cols-2 gap-8 place-items-center px-10 py-20" href="./cicimart/cicimart.html" data-aos="fade-up">
+                <img class="h-36 object-contain rounded-lg shadow-lg border-2" src="./cicimart/images/ic_launcher-xxxhd.png">
+                <div class="flex flex-col justify-start max-w-sm">
+                    <p class="text-xl font-semibold pb-1">Cicimart</p>
+                    <p>
+                        Cicimart is a mobile application that allows users to buy grocery items online and self-pickup 
+                        their orders or get them delivered to their front door.
+                    </p>
+                </div>
+            </a>
+        </section>
+        <section class="bg-gray-900 text-white pb-10">
+            <div class="font-anton flex justify-center text-3xl pt-8 pb-6 font-semibold">Blog posts</div>
+            <div class="flex justify-center">
+                <a class="bg-white text-black w-56 rounded" href="https://medium.com/@hammiziezamri/building-chat-application-with-flutter-and-firebase-e3288805fc9d" target="_blank" data-aos="fade-up">
+                    <img class="w-full h-36 rounded-tl rounded-tr object-cover" src="./images/chat_app_ui.jpg">
+                    <hr>
+                    <div class="p-4">
+                        <p class="text-xl">
+                            Building chat application with Flutter and Firebase
+                        </p>
+                    </div>
+                </a>
+            </div>
+        </section>
+        <section class="pb-10">
+            <div class="font-anton flex justify-center text-3xl pt-8 pb-6 font-semibold">Playground</div>
+            <div class="flex justify-center">
+                <div class="bg-white text-black w-56 rounded shadow-md" data-aos="fade-up">
+                    <img class="w-full h-36 rounded-tl rounded-tr object-cover" src="https://via.placeholder.com/150">
+                    <div class="p-4">
+                        <p class="text-xl font-semibold">Maze Solver</p>
+                        <p class="">Solving maze with Dijkstra's algorithm</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="bg-gray-900 text-white pb-20">
+            <div class="font-anton flex justify-center text-3xl pt-10 pb-6 font-semibold">Contact me</div>
+            <div class="flex justify-center">
+                <p>
+                    <span><strong>Email</strong></span><br>
+                    <span>Hammiziezamri@gmail.com</span>
+                </p>
+            </div>
+        </section>
     </div>
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
-    <script src="app.js"></script>
+    <script src="./index.js"></script>
 </body>
-
 </html>
