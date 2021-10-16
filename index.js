@@ -5,5 +5,5 @@ AOS.init({
 const actionButton = document.getElementById("action-btn");
 
 actionButton.addEventListener('click', (e)=>{
-    scrollTo(0, window.innerHeight);
+    scrollTo(0, 528);
 });
