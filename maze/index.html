@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shortest path</title>
+    <script src="./dist/p5.js"></script>
+    <style>
+        body, p {
+            margin: 0;
+            font-family: sans-serif;
+        }
+
+        h1{
+            margin: 4px 12px 0px 12px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        #canvas {
+            max-width: 480px;
+            max-height: 480px;
+            width: 95vw;
+            height: 95vw;
+            border: 1px solid black;
+            border-radius: 4px;
+            margin: 16px auto;
+        }
+
+        #path{
+            padding: 0px 12px;
+        }
+
+        .input {
+            display: flex;
+            justify-content: center;
+            padding: 12px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+        }
+
+        .select {
+            width: 100%;
+        }
+
+        select{
+            width: 100%;
+            height: 28px;
+            border-radius: 4px;
+        }
+
+        .btn-group {
+            display: flex;
+            margin-left: 4px;
+            align-items: flex-end;
+        }
+
+        .btn-group button {
+            width: 100%;
+            height: 28px;
+            min-width: 64px;
+            border: none;
+            border-radius: 4px;
+            background-color: black;
+            color: white;
+            cursor: pointer;
+        }
+
+        .btn-group button:hover{
+            background-color: gray;
+        }
+
+        .mr {
+            margin-right: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .input {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                padding: 12px;
+            }
+
+            .btn-group {
+                margin-left: 0px;
+                margin-top: 4px;
+            }
+
+            .select{
+                margin-bottom: 4px;
+            }
+
+            select {
+                margin-bottom: 4px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Maze Solver</h1>
+    <div class="input">
+        <div class="select mr" >
+            <label for="start">From</label>
+            <select name="start" id="start">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6" selected>6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+            </select>
+        </div>
+        <div class="select">
+            <label for="end">To</label>
+            <select name="end" id="end">
+                <option value="0">0</option>
+                <option value="1" selected>1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+            </select>
+        </div>
+        <div class="btn-group">
+            <button class="mr" id="find-btn">Solve</button>
+            <button class="mr" id="control-btn">Play</button>
+            <button id="restart-btn">Restart</button>
+        </div>
+    </div>
+    <div class="container">
+        <p><strong>Path</strong></p>
+        <div id="path" >6 >> 0 >> 2 >> 9 >> 1</div>
+        <div id="canvas"></div>
+        <div>
+            Github repo
+            <a href="https://github.com/ciciZamri/maze-solver" target="_blank">https://github.com/ciciZamri/maze-solver</a>
+        </div>
+    </div>
+    <script src="./dist/main.js"></script>
+</body>
+
+</html>
