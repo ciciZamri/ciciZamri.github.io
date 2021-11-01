@@ -4,6 +4,6 @@ AOS.init({
 
 const actionButton = document.getElementById("action-btn");
 
-actionButton.addEventListener('click', (e)=>{
+actionButton.addEventListener('click', (e) => {
     scrollTo(0, 528);
 });
